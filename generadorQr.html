@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QR Yerba del Sol con logo</title>
+  <style>
+    body { display:flex; align-items:center; justify-content:center; min-height:100vh; background:#fff; margin:0; }
+    .qr-wrap { position: relative; width: 360px; height: 360px; }
+    #qrCanvas { width: 100%; height: 100%; }
+    .controls { position: fixed; bottom: 16px; left: 0; right: 0; text-align:center; font: 14px/1.4 system-ui; }
+    button { padding: 8px 12px; border: 1px solid #222; background:#fff; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="qr-wrap">
+    <canvas id="qrCanvas"></canvas>
+  </div>
+  <div class="controls">
+    URL: https://mauroz88.github.io/yerbaDelSol
+    <br />
+    <button id="download">Descargar PNG</button>
+  </div>
+
+  <!-- Librería qrcode-generator -->
+  <script src="https://unpkg.com/qrcode-generator@1.4.4/qrcode.js"></script>
+  <script>
+    const url = 'https://mauroz88.github.io/yerbaDelSol';
+    const size = 360; // subí a 420 si querés más robustez
+    const logoSizeRatio = 0.20; // 20% del lado del QR (bajar a 0.18 si no lee)
+    const whiteBorderRatio = 0.08; // 8% “isla” blanca alrededor del logo
+
+    // Generar QR con ECC H
+    const qr = qrcode(0, 'H');
+    qr.addData(url);
+    qr.make();
+
+    // Render a canvas
+    const canvas = document.getElementById('qrCanvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    // Fondo blanco
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+
+    // Parámetros
+    const modules = qr.getModuleCount();
+    const quietModules = 4;             // zona de silencio
+    const cell = (size - quietModules * 2) / modules;
+    const offset = quietModules;
+
+    // Dibujar módulos
+    for (let r = 0; r < modules; r++) {
+      for (let c = 0; c < modules; c++) {
+        ctx.fillStyle = qr.isDark(r, c) ? '#000000' : '#ffffff';
+        const x = Math.round((c + offset / 2) * cell);
+        const y = Math.round((r + offset / 2) * cell);
+        ctx.fillRect(x, y, Math.ceil(cell), Math.ceil(cell));
+      }
+    }
+
+    // Dibujar “isla” blanca para el logo
+    const center = size / 2;
+    const logoSide = size * logoSizeRatio;
+    const whiteBorder = size * whiteBorderRatio;
+    const radius = (logoSide / 2) + whiteBorder;
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(center, center, radius, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Cargar y dibujar el logo centrado
+    const logo = new Image();
+    logo.crossOrigin = 'anonymous';
+    logo.src = 'imagenes/logo.png'; // asegurate que exista y sea nítido
+    logo.onload = () => {
+      ctx.save();
+      // recorte circular para el logo (opcional)
+      ctx.beginPath();
+      ctx.arc(center, center, logoSide / 2, 0, Math.PI * 2);
+      ctx.clip();
+      // dibujar logo
+      ctx.drawImage(
+        logo,
+        center - logoSide / 2,
+        center - logoSide / 2,
+        logoSide,
+        logoSide
+      );
+      ctx.restore();
+    };
+
+    // Descargar PNG
+    document.getElementById('download').addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.download = 'QR_YerbaDelSol.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  </script>
+</body>
+</html>
