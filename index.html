@@ -69,16 +69,77 @@
   </div>
 
   <!-- Contenido sobre el carousel -->
-  <div class="carousel-caption d-flex flex-column justify-content-center align-items-center" 
-       style="top:0; bottom:0;">
-    <img src="imagenes/logo.png" alt="Logo Yerba del Sol" width="500" class="mb-4">
-    <h1 class="display-3 font-weight-bold text-white text-stroke">Yerba del Sol</h1>
-    <p class="lead mb-4 text-white text-stroke">
-      Yerba artesanal cultivada en la Quebrada de Humahuaca, con certificación orgánica y empaques reciclables.  
-      Un producto local, sustentable y con identidad cultural.
-    </p>
-    <a href="#servicios" class="btn btn-outline-light btn-lg">Descubrir Productos</a>
-  </div>
+<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-center" 
+     style="top:0; bottom:0;">
+  
+  <!-- Logo responsivo -->
+  <img src="imagenes/logo.png" alt="Logo Yerba del Sol" 
+       class="img-fluid mb-3 logo-carousel">
+
+  <!-- Título responsivo -->
+  <h1 class="display-3 font-weight-bold text-white text-stroke d-none d-md-block">
+  Yerba del Sol
+</h1>
+
+
+  <!-- Texto responsivo -->
+  <p class="text-white ">
+    Yerba artesanal cultivada en la Quebrada de Humahuaca, con certificación orgánica y empaques reciclables.  
+    Un producto local, sustentable y con identidad cultural.
+  </p>
+
+  <a href="#servicios" class="btn btn-outline-light btn-lg sm-d-none">Descubrir Productos</a>
+</div>
+
+<!-- CSS personalizado -->
+<style>
+  .text-stroke {
+    text-shadow: -1px -1px 0 #000, 
+                 1px -1px 0 #000, 
+                -1px  1px 0 #000, 
+                 1px  1px 0 #000;
+  }
+
+  /* Logo responsivo */
+  .logo-carousel {
+    max-width: 500px; /* tamaño máximo en desktop */
+    width: 100%;      /* ocupa ancho disponible en móvil */
+  }
+
+  /* Título y texto adaptables */
+  .titulo-carousel {
+    font-size: 3rem; /* desktop */
+  }
+  .texto-carousel {
+    font-size: 1.25rem; /* desktop */
+  }
+
+  /* Ajustes para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .titulo-carousel {
+      font-size: 2rem; /* más chico en tablet/móvil */
+    }
+    .texto-carousel {
+      font-size: 1rem; /* texto más compacto */
+    }
+    .logo-carousel {
+      max-width: 250px; /* logo más chico en móvil */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .titulo-carousel {
+      font-size: 1.5rem; /* aún más chico en celular */
+    }
+    .texto-carousel {
+      font-size: 0.9rem;
+    }
+    .logo-carousel {
+      max-width: 180px; /* logo reducido en celular */
+    }
+  }
+</style>
+
 </section>
 
 <!-- CSS personalizado -->
@@ -108,32 +169,70 @@
     <div class="row">
       
       <!-- Producto Tradicional -->
-<div class="col-md-6 mb-4">
+<div class="col-md-3 mb-4">
   <div class="card h-100 text-center shadow-sm">
     <div class="card-img-top d-flex justify-content-center align-items-center pt-3">
-      <img src="imagenes/yerba-tradicional.png" alt="Yerba Tradicional" class="img-fluid" style="max-width: 300px;">
+      <img src="imagenes/yerba-tradicional.png" alt="Yerba Tradicional" class="img-fluid" style="max-width: 200px;">
     </div>
     <div class="card-body">
       <h4 class="card-title">Yerba Tradicional (con palo)</h4>
       <p class="card-text">
-        Bolsas de 250 g y 500 g, elaboradas con procesos artesanales y respetuosos con el medio ambiente.
+        Bolsas de 250 g, elaboradas con procesos artesanales y respetuosos con el medio ambiente.
       </p>
+      <h3>$ 500</h3>
+      <a href="#contacto" class="btn btn-success">Comprar</a>
+    </div>
+  </div>
+</div>
+
+<!-- Producto Tradicional -->
+<div class="col-md-3 mb-4">
+  <div class="card h-100 text-center shadow-sm">
+    <div class="card-img-top d-flex justify-content-center align-items-center pt-3">
+      <img src="imagenes/yerba-tradicional.png" alt="Yerba Tradicional" class="img-fluid" style="max-width: 200px;">
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Yerba Tradicional (con palo)</h4>
+      <p class="card-text">
+        Bolsas de 500 g, elaboradas con procesos artesanales y respetuosos con el medio ambiente.
+      </p>
+      <h3>$ 1000</h3>
       <a href="#contacto" class="btn btn-success">Comprar</a>
     </div>
   </div>
 </div>
 
 <!-- Producto Picante -->
-<div class="col-md-6 mb-4">
+<div class="col-md-3 mb-4">
   <div class="card h-100 text-center shadow-sm">
     <div class="card-img-top d-flex justify-content-center align-items-center pt-3">
-      <img src="imagenes/yerba-picante.png" alt="Yerba Picante" class="img-fluid" style="max-width: 300px;">
+      <img src="imagenes/yerba-picante.png" alt="Yerba Picante" class="img-fluid" style="max-width: 200px;">
     </div>
     <div class="card-body">
       <h4 class="card-title">Yerba Picante</h4>
       <p class="card-text">
-        Variante con un toque de ají rojo de la región, etiqueta con foto del campo.
+        Bolsas de 250 g,Variante con un toque de ají rojo de la región, etiqueta con foto del campo.
       </p>
+      <br>
+      <h3>$ 800</h3>
+      <a href="#contacto" class="btn btn-danger">Comprar</a>
+    </div>
+  </div>
+</div>
+
+<!-- Producto Picante -->
+<div class="col-md-3 mb-4">
+  <div class="card h-100 text-center shadow-sm">
+    <div class="card-img-top d-flex justify-content-center align-items-center pt-3">
+      <img src="imagenes/yerba-picante.png" alt="Yerba Picante" class="img-fluid" style="max-width: 200px;">
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Yerba Picante</h4>
+      <p class="card-text">
+       Bolsas de 500 g, Variante con un toque de ají rojo de la región, etiqueta con foto del campo.
+      </p>
+      <br>
+      <h3>$ 1300</h3>
       <a href="#contacto" class="btn btn-danger">Comprar</a>
     </div>
   </div>
